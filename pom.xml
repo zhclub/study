@@ -10,8 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-
-        <module>study-center</module>
+        <module>study-core</module>
+        <module>study-common</module>
+        <module>study-dependencies</module>
     </modules>
 
     <properties>
@@ -25,12 +26,19 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.bbc.common</groupId>
-                <artifactId>bbc-common-dependencies</artifactId>
+                <groupId>com.zhouhao.study</groupId>
+                <artifactId>study-dependencies</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>com.zhouhao.study</groupId>
+                <artifactId>study-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -86,49 +94,20 @@
 
     <profiles>
         <profile>
-            <id>development</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>production</id>
-            <properties>
-                <env>pro</env>
-            </properties>
+            <id>aliyun</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://maven.aliyun.com/repository/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>release</id>
-            <url>http://123.57.5.31:8081/nexus/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>snapshots</id>
-            <url>http://123.57.5.31:8081/nexus/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
 </project>
