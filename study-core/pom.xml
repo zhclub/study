@@ -11,5 +11,11 @@
 
     <artifactId>study-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zhouhao.study</groupId>
+            <artifactId>study-common</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property resource="common.properties"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c:%L][%X{invokeNo}] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="log-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${bbc.ware.man.log.path}log-info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${bbc.ware.man.log.path}log-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>512MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c:%L][%X{invokeNo}] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="log-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${bbc.ware.man.log.path}log-error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${bbc.ware.man.log.path}log-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>512MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c:%L][%X{invokeNo}] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异步输出 -->
+    <appender name="ASYNC-INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 0表示不丢弃日志事件，但若neverBlock=true，仍存在事件丢失可能性。若配置为n，表示如果队列空间剩余不足n%,则会丢弃TRACT、DEBUG、INFO级别的日志-->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>${bbc.ware.man.asyncLog.queueSize}</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="log-info"/>
+        <!--默认false。  若为true，日志事件插入阻塞队列将是offer方式(非阻塞，事件可能会丢失)，若为false，日志事件插入阻塞队列将是put方式(阻塞)-->
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <appender name="ASYNC-CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 0表示不丢弃日志事件，但若neverBlock=true，仍存在事件丢失可能性。若配置为n，表示如果队列空间剩余不足n%,则会丢弃TRACT、DEBUG、INFO级别的日志-->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>${bbc.ware.man.asyncLog.queueSize}</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="console"/>
+        <!--默认false。  若为true，日志事件插入阻塞队列将是offer方式(非阻塞，事件可能会丢失)，若为false，日志事件插入阻塞队列将是put方式(阻塞)-->
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="log-error"/>
+        <appender-ref ref="ASYNC-INFO"/>
+        <appender-ref ref="ASYNC-CONSOLE"/>
+    </root>
+
+</configuration>
