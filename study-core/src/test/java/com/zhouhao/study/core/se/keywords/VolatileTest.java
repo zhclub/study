@@ -1,6 +1,7 @@
 package com.zhouhao.study.core.se.keywords;
 
 import com.zhouhao.study.common.util.ThreadUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class VolatileTest {
@@ -15,6 +16,7 @@ public class VolatileTest {
     }
 
     @Test
+    @Ignore
     public void testOrderliness() {
 
         new Thread(() -> {

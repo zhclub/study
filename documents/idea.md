@@ -7,3 +7,11 @@
 ```
 Qr7EpuKzNtnTuEmGcLg/YnYyVEcnvR4iflCYTHc6dwuB8Jbx7e6E43CPRA+KjL2O/D/C+hj/rDFrwCNgGAvLcJd3bcaJ8UTMh8FPxd2EfjDt0eopoRIRQKtw8Ua3hlm2i+GvhYnaJ5/F1XN7H/8uEtYqFQlJc9auMxAL3gdnsmY
 ```
+
+# IDEA 参数配置
+File -> Manage IDE Settings -> export 
+
+# IDEA 插件
+1. Lombok
+2. Maven Helper
+3. Translation
