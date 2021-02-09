@@ -5,7 +5,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Tree<T extends Comparable> {
+public class BinaryTree<T extends Comparable> {
 
     private TreeNode<T> root;
 

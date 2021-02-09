@@ -1,6 +1,6 @@
 package com.zhouhao.study.core.helper;
 
-import com.zhouhao.study.core.model.Tree;
+import com.zhouhao.study.core.model.BinaryTree;
 
 public class TreeHelper {
 
@@ -10,12 +10,12 @@ public class TreeHelper {
      * @param <T>
      * @return
      */
-    public static <T extends Comparable> Tree<T> generateTree(T[] params) {
-        Tree<T> tree = new Tree<T>();
+    public static <T extends Comparable> BinaryTree<T> generateTree(T[] params) {
+        BinaryTree<T> binaryTree = new BinaryTree<T>();
         for (T param : params) {
-            tree.add(param);
+            binaryTree.add(param);
         }
-        return tree;
+        return binaryTree;
     }
 
 }

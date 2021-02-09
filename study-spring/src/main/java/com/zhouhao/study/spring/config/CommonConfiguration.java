@@ -26,10 +26,4 @@ public class CommonConfiguration {
     @Resource
     private ApplicationContext applicationContext;
 
-    @PostConstruct
-    public void setUp() {
-        Object user = applicationContext.getBean("user");
-
-    }
-
 }
