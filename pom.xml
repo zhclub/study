@@ -20,6 +20,7 @@
         <module>study-dependencies</module>
         <module>study-maven</module>
         <module>study-spring</module>
+        <module>study-demo</module>
     </modules>
 
     <properties>
